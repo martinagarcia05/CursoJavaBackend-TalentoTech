@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         ArrayList<Estudio> estudiosDB = obtenerEstudiosRadiologia();
+        ArrayList<Paciente> pacientesDB = obtenerPacientes();
         int idSiguiente = estudiosDB.size() + 1;
         int opcionUsuario;
 
@@ -22,6 +23,7 @@ public class Main {
           4 - Editar nombre Estudio de Radiología
           5 - Borrar Estudio de Radiología
           6 - Sacar turno
+          7 - Registrar Paciente
           """);
             opcionUsuario = entrada.nextInt();
 
@@ -34,7 +36,8 @@ public class Main {
                 case 3 -> buscarEstudioPorNombre(estudiosDB);
                 case 4 -> editarEstudio(estudiosDB);
                 case 5 -> borrarEstudio(estudiosDB);
-                case 6 -> System.out.println("sacar turno: Funcionalida en progreso...");
+                case 6 -> System.out.println("sacar turno: Funcionalida en progreso...\n");
+                case 7 -> registrarPaciente(pacientesDB);
                 case 0 -> {
                     System.out.println("Gracias por usar la app!");
                     break label; // corta el bucle donde se ejecuta
@@ -46,12 +49,13 @@ public class Main {
 
     public static void crearEstudio(int id, ArrayList<Estudio> estudios) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Creando Nuevo Producto");
-        System.out.print("Ingrese el nombre del nuevo producto: ");
+        System.out.println("Creando Nuevo Estudio");
+        System.out.print("Ingrese el nombre del nuevo estudio: ");
         String nombre = entrada.nextLine();
-
+        System.out.print("Ingrese el precio del nuevo estudio: $");
+        double precio = entrada.nextDouble();
         // TODO: cambiarlo cuando veamos static
-        estudios.add(new Estudio(id, nombre));
+        estudios.add(new Estudio(id, nombre, precio));
 
         // TODO: agregar un mensaje de confirmación cuando se crea el producto
         pausa();
@@ -59,14 +63,14 @@ public class Main {
 
     public static void listarEstudios(ArrayList<Estudio> estudios ) {
         System.out.println("=======================================");
-        System.out.println("        LISTA DE PRODUCTOS");
+        System.out.println("        LISTA DE ESTUCIOS");
         System.out.println("=======================================");
 
         if (estudios == null || estudios.isEmpty()) {
-            System.out.println("⚠️  No hay productos para mostrar.");
+            System.out.println("⚠️  No hay estudios para mostrar.");
         } else {
             for (Estudio estudio : estudios) {
-                System.out.printf(" %2d. %s%n", estudio.id, estudio.nombre);
+                System.out.printf(" %2d. %s - Precio particular: $%.2f%n ", estudio.id, estudio.nombre, estudio.precioParticular);
             }
         }
 
@@ -126,6 +130,28 @@ public class Main {
         System.out.println("Borrado exitosamente!");
     }
 
+    public static void registrarPaciente(ArrayList<Paciente> pacientes) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Creando Nuevo Paciente");
+        System.out.print("Ingrese el dni del nuevo paciente: ");
+        int dni = entrada.nextInt();
+        entrada.nextLine();
+        System.out.print("Ingrese el nombre del nuevo paciente: ");
+        String nombre = entrada.nextLine();
+        System.out.print("Ingrese el apellido del nuevo paciente: ");
+        String apellido = entrada.nextLine();
+        System.out.print("Ingrese la obra social del paciente en MAYUSCULA: ");
+        String os = entrada.nextLine();
+
+
+
+        // TODO: cambiarlo cuando veamos static
+        pacientes.add(new Paciente(dni, nombre, apellido, os));
+
+        // TODO: agregar un mensaje de confirmación cuando se crea el producto
+        pausa();
+    }
+
     /* UTILIDADES */
     /* Busqueda por id - ahora mismo solo funciona con el indice, en el futuro se va a cambiar */
     public static Estudio obtenerEstudiosPorId(List<Estudio> estudios) {
@@ -166,13 +192,21 @@ public class Main {
     public static ArrayList<Estudio> obtenerEstudiosRadiologia() {
         ArrayList<Estudio> estudios = new ArrayList<>();
 
-        estudios.add(new Estudio(1, "Mamografía"));
-        estudios.add(new Estudio(2, "Ecografía"));
-        estudios.add(new Estudio(3, "Radiografía de torax"));
-        estudios.add(new Estudio(4, "Radiografía de torax frente"));
-        estudios.add(new Estudio(5, "Radiografía de torax frente y perfil"));
-        estudios.add(new Estudio(6, "Radiografía de ambos pies frente"));
-        estudios.add(new Estudio(7, "Radiografía de ambos pies frente y perfil"));
+        estudios.add(new Estudio(1, "Mamografía", 30000));
+        estudios.add(new Estudio(2, "Ecografía", 10000));
+        estudios.add(new Estudio(3, "Radiografía de torax", 20000));
+        estudios.add(new Estudio(4, "Radiografía de torax frente", 25000));
+        estudios.add(new Estudio(5, "Radiografía de torax frente y perfil", 30000));
+        estudios.add(new Estudio(6, "Radiografía de ambos pies frente", 25000));
+        estudios.add(new Estudio(7, "Radiografía de ambos pies frente y perfil", 30000));
         return estudios;
+    }
+    public static ArrayList<Paciente> obtenerPacientes() {
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+
+        pacientes.add(new Paciente(11111111, "Martina", "Garcia Amendola", "IOMA"));
+        pacientes.add(new Paciente(22221111, "Antonio", "Juarez", "OSDE"));
+        pacientes.add(new Paciente(22229999, "Maria", "Gonzales", "OSPE"));
+        return pacientes;
     }
 }

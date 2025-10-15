@@ -1,12 +1,12 @@
 public class Estudio {
     int id;
     String nombre;
-    float precio;
+    double precioParticular;
 
     // metodo constructor
-    public Estudio(int idEstudio, String nombreEstudio, float precioEstudio) {
+    public Estudio(int idEstudio, String nombreEstudio, double precioEstudio) {
         id = idEstudio;
         nombre = nombreEstudio;
-        precio = precioEstudio;
+        precioParticular = precioEstudio;
     }
 }
