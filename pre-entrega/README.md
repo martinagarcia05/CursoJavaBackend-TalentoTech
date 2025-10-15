@@ -1,8 +1,8 @@
 # Pre-entrega 1
 
-## Proyecto E-Commerce
+## Proyecto Consultorio de Radiología
 
-Crud de productos para una E-Commerce, la aplicación se ejecuta en una terminal
+Crud de estudios para una Consultorio de Radiología, la aplicación se ejecuta en una terminal
 
 ## Diagrama de la aplicación
 

@@ -1,120 +1,178 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-  public static void main(String[] args) {
-    Scanner entrada = new Scanner(System.in);
-    ArrayList<String> productosDB = obtenerProductosTecnologicos();
-    int opcionUsuario;
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        ArrayList<Estudio> estudiosDB = obtenerEstudiosRadiologia();
+        int idSiguiente = estudiosDB.size() + 1;
+        int opcionUsuario;
 
-    System.out.println("Te damos la bienvenida a la app de compras 🛒");
-    label:
-    while (true) {
-      System.out.println("""
+        System.out.println("Te damos la bienvenida a la app de compras 🛒");
+        label:
+        while (true) {
+            System.out.println("""
           Ingrese el número equivalente a la opción:
           0 - Finaliza el programa
-          1 - Crea un Producto
-          2 - Listar Productos
+          1 - Crea un Estudio de Radiología
+          2 - Listar Estudios de Radiología
           3 - Búsqueda por nombre
-          4 - Editar nombre producto
-          5 - Borrar producto
+          4 - Editar nombre Estudio de Radiología
+          5 - Borrar Estudio de Radiología
+          6 - Sacar turno
           """);
-      opcionUsuario = entrada.nextInt();
+            opcionUsuario = entrada.nextInt();
 
-      switch (opcionUsuario) {
-        case 1 -> crearProducto(productosDB); // - >
-        case 2 -> listarProductos(productosDB);
-        case 3 -> buscarProductoPorNombre(productosDB);
-        case 0 -> {
-          System.out.println("Gracias por usar la app!");
-          break label; // corta el bucle donde se ejecuta
+            switch (opcionUsuario) {
+                case 1 -> {
+                    crearEstudio(idSiguiente, estudiosDB);
+                    idSiguiente += 1;
+                }
+                case 2 -> listarEstudios(estudiosDB);
+                case 3 -> buscarEstudioPorNombre(estudiosDB);
+                case 4 -> editarEstudio(estudiosDB);
+                case 5 -> borrarEstudio(estudiosDB);
+                case 6 -> System.out.println("sacar turno: Funcionalida en progreso...");
+                case 0 -> {
+                    System.out.println("Gracias por usar la app!");
+                    break label; // corta el bucle donde se ejecuta
+                }
+                default -> System.out.println("Opción incorrecta, intente de nuevo");
+            }
         }
-        default -> System.out.println("Opción incorrecta, intente de nuevo");
-      }
-    }
-  }
-
-  public static void crearProducto(ArrayList<String> productos) {
-    Scanner entrada = new Scanner(System.in);
-    System.out.println("Creando Nuevo Producto");
-    System.out.print("Ingrese el nombre del nuevo producto: ");
-    String nombre = entrada.nextLine();
-
-    productos.add(nombre);
-
-    // TODO: agregar un mensaje de confirmación cuando se crea el producto
-    pausa();
-  }
-
-  public static void listarProductos(ArrayList<String> productos) {
-    System.out.println("=======================================");
-    System.out.println("        LISTA DE PRODUCTOS");
-    System.out.println("=======================================");
-
-    if (productos == null || productos.isEmpty()) {
-      System.out.println("⚠️  No hay productos para mostrar.");
-    } else {
-      int contador = 1;
-      for (String producto : productos) {
-        System.out.printf(" %2d. %s%n", contador++, producto);
-      }
     }
 
-    System.out.println("=======================================");
-    pausa();
-  }
+    public static void crearEstudio(int id, ArrayList<Estudio> estudios) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Creando Nuevo Producto");
+        System.out.print("Ingrese el nombre del nuevo producto: ");
+        String nombre = entrada.nextLine();
 
-  public static void buscarProductoPorNombre(ArrayList<String> productos) {
-    Scanner entrada = new Scanner(System.in);
-    System.out.println("Ingrese un nombre de un producto: ");
-    String busqueda = entrada.nextLine();
-    ArrayList<String> productoEncontrados = new ArrayList<>();
+        // TODO: cambiarlo cuando veamos static
+        estudios.add(new Estudio(id, nombre));
 
-    for (String producto : productos) {
-      if (estaIncluido(producto, busqueda)) {
-        productoEncontrados.add(producto);
-      }
+        // TODO: agregar un mensaje de confirmación cuando se crea el producto
+        pausa();
     }
 
-    listarProductos(productoEncontrados);
-  }
+    public static void listarEstudios(ArrayList<Estudio> estudios ) {
+        System.out.println("=======================================");
+        System.out.println("        LISTA DE PRODUCTOS");
+        System.out.println("=======================================");
 
-  /* UTILIDADES */
-  public static boolean estaIncluido(String nombreCompleto, String nombreParcial) {
-    String nombreCompletoFormateado = formatoBusqueda(nombreCompleto);
+        if (estudios == null || estudios.isEmpty()) {
+            System.out.println("⚠️  No hay productos para mostrar.");
+        } else {
+            for (Estudio estudio : estudios) {
+                System.out.printf(" %2d. %s%n", estudio.id, estudio.nombre);
+            }
+        }
 
-    return nombreCompletoFormateado.contains(formatoBusqueda(nombreParcial));
-  }
-
-  public static String formatoBusqueda(String texto) {
-    return texto.trim().toLowerCase();
-  }
-
-  public static void pausa() {
-    Scanner entrada = new Scanner(System.in);
-    System.out.println("Pulse ENTER para continuar...");
-    entrada.nextLine();
-    for (int i = 0; i < 20; ++i) {
-      System.out.println();
+        System.out.println("=======================================");
+        pausa();
     }
-    // TODO: limpiar la pantalla de la consola
-  }
 
-  public static ArrayList<String> obtenerProductosTecnologicos() {
-    ArrayList<String> productos = new ArrayList<>();
+    public static void buscarEstudioPorNombre(ArrayList<Estudio> estudios) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese un nombre de un producto: ");
+        String busqueda = entrada.nextLine();
+        ArrayList<Estudio> estudiosEncontrados = new ArrayList<>();
 
-    productos.add("Laptop Lenovo ThinkPad X1 Carbon");
-    productos.add("Mouse inalámbrico Logitech MX Master 3");
-    productos.add("Teclado mecánico Razer BlackWidow V4");
-    productos.add("Monitor LG UltraWide 34 pulgadas");
-    productos.add("Smartphone Samsung Galaxy S23 Ultra");
-    productos.add("Tablet Apple iPad Pro 12.9\"");
-    productos.add("Disco duro externo Seagate 2TB");
-    productos.add("Memoria RAM Corsair Vengeance 16GB");
-    productos.add("Cargador inalámbrico Belkin Boost Up");
-    productos.add("Auriculares Bluetooth Sony WH-1000XM5");
+        for (Estudio estudio : estudios) {
+            if (estaIncluido(estudio.nombre, busqueda)) {
+                estudiosEncontrados.add(estudio);
+            }
+        }
 
-    return productos;
-  }
+        listarEstudios(estudiosEncontrados);
+    }
+
+    public static void editarEstudio(List<Estudio> estudios) {
+        // el listado de productos tiene las direcciones de memoria de los productos originales
+        Scanner entrada = new Scanner(System.in);
+        // aca obtenemos la direccion de memoria que nos permite modificar el objeto original
+        // que es uno de los que esta en el listado
+        Estudio estudio = obtenerEstudiosPorId(estudios);
+        // TODO: validar que encontramos el producto
+        String nombreOriginal = estudio.nombre;
+        System.out.println("Producto a editar:");
+        System.out.println(nombreOriginal);
+        // TODO: validar que el usuario quiere editar el producto que se encontro
+        System.out.print("Ingrese el nuevo nombre: ");
+        String nuevoNombre = entrada.nextLine();
+
+        // ["p1", "p2", "p3"]
+        // set(1, "p38")
+        // ["p1", "p38", "p3"]
+        // actualizamos el nombre en el producto
+        estudio.nombre = nuevoNombre;
+
+        System.out.printf("El nombre del estudio cambio de %s a %s", nombreOriginal, nuevoNombre);
+    }
+
+    public static void borrarEstudio(List<Estudio> estudios) {
+        Scanner entrada = new Scanner(System.in);
+        Estudio estudio = obtenerEstudiosPorId(estudios);
+        // TODO: validar que encontramos el producto
+        String nombreOriginal = estudio.nombre;
+        System.out.println("Estudio a borrar:");
+        System.out.println(nombreOriginal);
+        // TODO: validar que el usuario quiere borrar el producto que se encontro
+
+        // aca borramos el producto
+        estudios.remove(estudio);
+        System.out.println("Borrado exitosamente!");
+    }
+
+    /* UTILIDADES */
+    /* Busqueda por id - ahora mismo solo funciona con el indice, en el futuro se va a cambiar */
+    public static Estudio obtenerEstudiosPorId(List<Estudio> estudios) {
+        Scanner entrada = new Scanner(System.in);
+        // TODO: validacion de datos
+        System.out.println("Ingrese el id del estudio: ");
+        int idBusqueda = entrada.nextInt();
+
+        for (Estudio estudio : estudios) {
+            if (estudio.id == idBusqueda) {
+                return estudio;
+            }
+        }
+
+        return null; // el null representa que no encontramos el producto
+    }
+
+    public static boolean estaIncluido(String nombreCompleto, String nombreParcial) {
+        String nombreCompletoFormateado = formatoBusqueda(nombreCompleto);
+
+        return nombreCompletoFormateado.contains(formatoBusqueda(nombreParcial));
+    }
+
+    public static String formatoBusqueda(String texto) {
+        return texto.trim().toLowerCase();
+    }
+
+    public static void pausa() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Pulse ENTER para continuar...");
+        entrada.nextLine();
+        for (int i = 0; i < 20; ++i) {
+            System.out.println();
+        }
+        // TODO: limpiar la pantalla de la consola
+    }
+
+    public static ArrayList<Estudio> obtenerEstudiosRadiologia() {
+        ArrayList<Estudio> estudios = new ArrayList<>();
+
+        estudios.add(new Estudio(1, "Mamografía"));
+        estudios.add(new Estudio(2, "Ecografía"));
+        estudios.add(new Estudio(3, "Radiografía de torax"));
+        estudios.add(new Estudio(4, "Radiografía de torax frente"));
+        estudios.add(new Estudio(5, "Radiografía de torax frente y perfil"));
+        estudios.add(new Estudio(6, "Radiografía de ambos pies frente"));
+        estudios.add(new Estudio(7, "Radiografía de ambos pies frente y perfil"));
+        return estudios;
+    }
 }
