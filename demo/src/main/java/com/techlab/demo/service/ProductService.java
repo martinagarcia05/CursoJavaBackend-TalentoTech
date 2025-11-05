@@ -1,4 +1,4 @@
-package demo.src.main.java.com.techlab.demo.service;
+package com.techlab.demo.service;
 
 import org.springframework.stereotype.Service;
 
