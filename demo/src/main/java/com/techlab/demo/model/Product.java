@@ -1,4 +1,4 @@
-package com.techlab.demo.model;
+package demo.src.main.java.com.techlab.demo.model;
 
 public class Product {
     private int id;

@@ -1,3 +1,5 @@
+import Entity.ClienteEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         ArrayList<Estudio> estudiosDB = obtenerEstudiosRadiologia();
-        ArrayList<Paciente> pacientesDB = obtenerPacientes();
+        ArrayList<ClienteEntity> pacientesDB = obtenerPacientes();
         int idSiguiente = estudiosDB.size() + 1;
         int opcionUsuario;
 
@@ -130,7 +132,7 @@ public class Main {
         System.out.println("Borrado exitosamente!");
     }
 
-    public static void registrarPaciente(ArrayList<Paciente> pacientes) {
+    public static void registrarPaciente(ArrayList<ClienteEntity> clienteEntities) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Creando Nuevo Paciente");
         System.out.print("Ingrese el dni del nuevo paciente: ");
@@ -146,7 +148,7 @@ public class Main {
 
 
         // TODO: cambiarlo cuando veamos static
-        pacientes.add(new Paciente(dni, nombre, apellido, os));
+        clienteEntities.add(new ClienteEntity(dni, nombre, apellido, os));
 
         // TODO: agregar un mensaje de confirmación cuando se crea el producto
         pausa();
@@ -201,12 +203,12 @@ public class Main {
         estudios.add(new Estudio(7, "Radiografía de ambos pies frente y perfil", 30000));
         return estudios;
     }
-    public static ArrayList<Paciente> obtenerPacientes() {
-        ArrayList<Paciente> pacientes = new ArrayList<>();
+    public static ArrayList<ClienteEntity> obtenerPacientes() {
+        ArrayList<ClienteEntity> clienteEntities = new ArrayList<>();
 
-        pacientes.add(new Paciente(11111111, "Martina", "Garcia Amendola", "IOMA"));
-        pacientes.add(new Paciente(22221111, "Antonio", "Juarez", "OSDE"));
-        pacientes.add(new Paciente(22229999, "Maria", "Gonzales", "OSPE"));
-        return pacientes;
+        clienteEntities.add(new ClienteEntity(11111111, "Martina", "Garcia Amendola", "IOMA"));
+        clienteEntities.add(new ClienteEntity(22221111, "Antonio", "Juarez", "OSDE"));
+        clienteEntities.add(new ClienteEntity(22229999, "Maria", "Gonzales", "OSPE"));
+        return clienteEntities;
     }
 }
