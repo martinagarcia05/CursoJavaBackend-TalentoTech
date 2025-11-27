@@ -2,14 +2,19 @@ package com.techlab.demo.model;
 
 import com.techlab.demo.entity.ConceptoEntity;
 import com.techlab.demo.entity.LiquidacionEntity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import types.EstadoCliente;
 
 import java.util.List;
 
+@Entity
+@Getter
+@Setter
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer dni;
     private String nombre;

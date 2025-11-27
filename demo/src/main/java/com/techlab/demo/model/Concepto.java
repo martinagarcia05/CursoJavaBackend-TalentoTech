@@ -1,14 +1,18 @@
 package com.techlab.demo.model;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import types.TipoMoneda;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Getter
+@Setter
 public class Concepto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime validoDesde;
     @Enumerated(EnumType.STRING)

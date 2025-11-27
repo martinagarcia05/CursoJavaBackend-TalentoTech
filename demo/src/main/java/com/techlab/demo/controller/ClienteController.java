@@ -26,11 +26,11 @@ public class ClienteController {
         return true;
     }
 
-    @GetMapping("/clientes/{id}")
-    public Cliente obtenerClientePorId(@PathVariable int id){
+    //@GetMapping("/clientes/{id}")
+    //public Cliente obtenerClientePorId(@PathVariable int id){
         //Cliente cliente = clienteService.buscarPorId(id);
         //verificar q no sea null
-    }
+    //}
 
     @PostMapping("/clientes/{id}") //lleva id??
     public Boolean actualizarCliente(@RequestBody Cliente cliente){

@@ -1,5 +1,6 @@
-package demo.src.main.java.com.techlab.demo.controller;
+package com.techlab.demo.controller;
 
+import com.techlab.demo.model.Product;
 import demo.src.main.java.com.techlab.demo.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 

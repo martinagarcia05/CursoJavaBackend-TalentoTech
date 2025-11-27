@@ -1,0 +1,11 @@
+#.propierties
+#spring.application.name=demo
+#server.port=${PUERTO_LOCAL}
+
+spring:
+  application:
+    name: datos
+  profiles:
+    active: prod # prod | local --> depende donde quiero ejecutar
+  server:
+    port: ${PUERTO_LOCAL}
