@@ -11,17 +11,13 @@ import java.util.Optional;
 public class ClienteService {
     private ClienteRepository clienteRepository;
 
-    public boolean crearCliente(Integer dni, String nombre, String apellido, String mail, Integer cuit, String claveFiscalAFIP, String claveFiscalCarga, String observaciones, ConceptoEntity concepto) {
+    public ClienteEntity crearCliente(Integer dni, String nombre, String apellido, String mail, Integer cuit, String claveFiscalAFIP, String claveFiscalCarga, String observaciones, ConceptoEntity concepto) {
         ClienteEntity cliente = new ClienteEntity(dni, nombre, apellido, mail, cuit, claveFiscalAFIP, claveFiscalCarga, observaciones, concepto);
-        return true;
+        return cliente;
     }
 
     public ClienteEntity consultarCliente(Integer dni){ //devuelve cliente
         return clienteRepository.findByDni(dni);
-    }
-
-    public Long  obtenerIdCliente(Integer dni){ //devuelve id
-        return clienteRepository.findById(dni).get().getId();
     }
 
     public boolean eliminarCliente(Integer dni){

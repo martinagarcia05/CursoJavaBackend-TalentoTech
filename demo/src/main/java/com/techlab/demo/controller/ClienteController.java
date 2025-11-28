@@ -1,9 +1,7 @@
 package com.techlab.demo.controller;
 
 import com.techlab.demo.entity.ClienteEntity;
-import com.techlab.demo.model.Cliente;
 import com.techlab.demo.service.ClienteService;
-import jakarta.annotation.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,9 +15,9 @@ public class ClienteController {
 
     //Endpoints:
     @PostMapping("/cliente")
-    public Boolean crearCliente(@RequestBody ClienteEntity cliente){
-        clienteService.crearCliente(cliente.getDni(), cliente.getNombre(), cliente.getApellido(), cliente.getMail(), cliente.getCuit(), cliente.getClaveFiscalAFIP(), cliente.getClaveFiscalCarga(), cliente.getObservaciones(), cliente.getConcepto());
-        return true;
+    public ClienteEntity crearCliente(@RequestBody ClienteEntity cliente){
+
+        return clienteService.crearCliente(cliente.getDni(), cliente.getNombre(), cliente.getApellido(), cliente.getMail(), cliente.getCuit(), cliente.getClaveFiscalAFIP(), cliente.getClaveFiscalCarga(), cliente.getObservaciones(), cliente.getConcepto());
     }
 
     @DeleteMapping("/cliente/{dni}")
