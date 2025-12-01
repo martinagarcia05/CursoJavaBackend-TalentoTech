@@ -3,11 +3,17 @@ package com.techlab.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import types.FormaPago;
 
 import java.time.LocalDateTime;
 
 @Entity
+@ToString
+@Getter
+@Setter
 public class LiquidacionEntity {
     private Long id;
     private LocalDateTime fecha;

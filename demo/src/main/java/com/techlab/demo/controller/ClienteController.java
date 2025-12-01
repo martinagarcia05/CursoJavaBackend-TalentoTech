@@ -17,7 +17,7 @@ public class ClienteController {
     @PostMapping("/cliente")
     public ClienteEntity crearCliente(@RequestBody ClienteEntity cliente){
 
-        return clienteService.crearCliente(cliente.getDni(), cliente.getNombre(), cliente.getApellido(), cliente.getMail(), cliente.getCuit(), cliente.getClaveFiscalAFIP(), cliente.getClaveFiscalCarga(), cliente.getObservaciones(), cliente.getConcepto());
+        return clienteService.crearCliente(cliente);
     }
 
     @DeleteMapping("/cliente/{dni}")

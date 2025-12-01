@@ -14,8 +14,8 @@ import java.util.List;
 public class CobroService {
     private CobroRepository cobroRepository;
 
-    public CobroEntity crearCobro(LocalDateTime fecha, double monto, FormaPago formaDePago, String observaciones, LiquidacionEntity liquidacion, ClienteEntity cliente) {
-        CobroEntity cobro = new CobroEntity(fecha, monto, formaDePago, observaciones, liquidacion, cliente);
+    public CobroEntity crearCobro(CobroEntity cobro) {
+        this.cobroRepository.save(cobro);
         return cobro;
     }
 

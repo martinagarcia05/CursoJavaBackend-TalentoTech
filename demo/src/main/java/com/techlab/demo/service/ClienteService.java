@@ -11,8 +11,8 @@ import java.util.Optional;
 public class ClienteService {
     private ClienteRepository clienteRepository;
 
-    public ClienteEntity crearCliente(Integer dni, String nombre, String apellido, String mail, Integer cuit, String claveFiscalAFIP, String claveFiscalCarga, String observaciones, ConceptoEntity concepto) {
-        ClienteEntity cliente = new ClienteEntity(dni, nombre, apellido, mail, cuit, claveFiscalAFIP, claveFiscalCarga, observaciones, concepto);
+    public ClienteEntity crearCliente(ClienteEntity cliente) {
+        this.clienteRepository.save(cliente);
         return cliente;
     }
 

@@ -1,8 +1,9 @@
+
 spring:
   application:
     name: datos
   datasource:
-    driver-class-name: org.hs.Driver
+    driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:ecommerce
     username: sa
     password:
@@ -14,4 +15,3 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
-    show-sql: true

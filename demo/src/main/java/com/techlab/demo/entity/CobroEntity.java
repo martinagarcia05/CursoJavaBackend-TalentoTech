@@ -3,12 +3,18 @@ package com.techlab.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.apache.logging.log4j.util.Lazy;
 import types.FormaPago;
 
 import java.time.LocalDateTime;
 
 @Entity
+@ToString
+@Getter
+@Setter
 public class CobroEntity {
     private Long id;
     private LocalDateTime fecha;
