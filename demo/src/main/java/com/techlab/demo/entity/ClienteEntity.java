@@ -23,14 +23,13 @@ public class ClienteEntity {
     private String claveFiscalAFIP;
     private String claveFiscalCarga;
     private String observaciones;
-    @OneToMany
-    private ConceptoEntity concepto;
+
     @OneToMany
     private List<LiquidacionEntity> liquidaciones;
     private EstadoCliente estado;
 
     // metodo constructor
-    public ClienteEntity(int dniC, String nombreC, String apellidoC, String mailC, Integer cuitC, String claveFiscalAFIPC, String claveFiscalCargaC, String observacionesC, ConceptoEntity conceptoC) {
+    public ClienteEntity(int dniC, String nombreC, String apellidoC, String mailC, Integer cuitC, String claveFiscalAFIPC, String claveFiscalCargaC, String observacionesC) {
         dni = dniC;
         nombre = nombreC;
         apellido = apellidoC;
@@ -39,7 +38,6 @@ public class ClienteEntity {
         claveFiscalAFIP = claveFiscalAFIPC;
         claveFiscalCarga = claveFiscalCargaC;
         observaciones = observacionesC;
-        concepto = conceptoC;
         estado = EstadoCliente.ACTIVO;
     }
 }
