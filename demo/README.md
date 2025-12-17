@@ -42,3 +42,27 @@ El sistema debe permitir la carga manual del valor del módulo, guardando histó
 
 ---------------------------------------
 ### *WSDL*
+
+---------------------------------------
+### *CORRECCIONES:*
+Excelente trabajo!!
+
+* Excelente documentacion!
+
+* Se respeta la arquitectura de 3 capas
+
+* muy buenas las relaciones de las entities
+
+para seguir mejorando:
+
+* Esta bueno nunca devolver un listado de datos(en el controller), ya que luego es mas dificil cambiarlo, para agregar paginacion por ejemplo, lo ideal es siempre devoler un dto que contenga el listado de datos, luego subire algun video sobre eso.
+
+* estaria bueno agregar DTOs a las respuestas del controller
+
+* estaria bueno agregar interfaces para el service y el repo
+
+* puedes agregar alguna libreria para documentar los endpoints del sistema como SpringDoc OpenAPI o Swagger
+
+* podrias agregarle docker y algun sistema de seguridad
+
+Felicitaciones por todo el esfuerzo y por completar el curso!!
