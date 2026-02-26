@@ -1,12 +1,10 @@
 package com.techlab.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.mapping.ToOne;
 import types.TipoMoneda;
 
 import java.time.LocalDate;
@@ -18,16 +16,12 @@ import java.time.LocalDateTime;
 @Setter
 public class ConceptoEntity {
     private Long id;
-    private LocalDate validoDesde;
-    @Enumerated(EnumType.STRING)
-    private TipoMoneda moneda;
-    private double cantidad;
-    @ManyToOne
-    private ClienteEntity cliente;
+    private double totalAdicionalPesos;
+    @OneToOne(cascade = CascadeType.ALL)
+    private LiquidacionEntity liquidacion;
 
-    public ConceptoEntity(LocalDateTime validoDesde, TipoMoneda moneda, double cantidad, ClienteEntity cliente) {
-        this.validoDesde = validoDesde;
-        this.moneda = moneda;
-        this.cantidad = cantidad;
+    public ConceptoEntity(double adicinal, LiquidacionEntity liquidacion) {
+        this.totalAdicionalPesos = adicinal;
+        this.liquidacion = liquidacion;
     }
 }

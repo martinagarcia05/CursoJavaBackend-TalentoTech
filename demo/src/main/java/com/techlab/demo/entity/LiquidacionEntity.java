@@ -1,12 +1,11 @@
 package com.techlab.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import types.FormaPago;
+import types.TipoMoneda;
 
 import java.time.LocalDateTime;
 
@@ -17,19 +16,18 @@ import java.time.LocalDateTime;
 public class LiquidacionEntity {
     private Long id;
     private LocalDateTime fecha;
-    private double total; //SE CALCULA:
-    //PARA DOLARES O PESOS: cantidad de concepto
-    //PARA MODULOS: cantidad en concepto * (último) precio en preciomensualxmodulo
+    private double totalPesos; //SE CALCULA:
+    @Enumerated(EnumType.STRING)
+    private TipoMoneda moneda;
+    private double cantidadMoneda;
     @ManyToOne
     private ClienteEntity cliente;
-    @ManyToOne
-    private HistorialPrecioModuloEntity historialPrecioModulo;
-    //debería conocer el concepto?
 
-    public LiquidacionEntity(LocalDateTime fecha, double total, ClienteEntity cliente, HistorialPrecioModuloEntity historialPrecioModulo) {
+    public LiquidacionEntity(LocalDateTime fecha, double total, ClienteEntity cliente, double cantidadMoneda, TipoMoneda moneda) {
         this.fecha = fecha;
-        this.total = total;
+        this.totalPesos = total;
+        this.moneda = moneda;
+        this.cantidadMoneda = cantidadMoneda;
         this.cliente = cliente;
-        this.historialPrecioModulo = historialPrecioModulo;
     }
 }

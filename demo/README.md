@@ -1,12 +1,12 @@
 # Estudio Contable
 **(Cambio de dominio)**
-
-![img.png](img.png)
+ ![img.png](img.png)
+![img_5.png](img_5.png)
 
 *El contador tiene clientes que pagan mensualmente*.
-El *30 de cada mes* se crea una *liquidación* que cobra cada *concepto* asociado a cada cliente.
-Cada concepto define cuánto y cómo *(en pesos, dolares o módulos)* se cobra por cliente.
-Se requiere un historial de los precios de los módulos y los conceptos.
+El *30 de cada mes* se crea una *liquidación* que cobra una cantidad de pesos/dolares/modulos (cada monulo y pesos con sus precis actualizados.)
+Ademas se puede cobrar un adicional en pesos ocasional llamado *concepto*.
+Se requiere un historial de los precios de los módulos y dolares.
 ---------------------------------------
 ### *Acciones esperadas:*
 1.	ABM clientes  (Apellido, Nombre, CUIT, forma de cobro {pesos, dolares o modulo}, mail y otros datos que se requieran
